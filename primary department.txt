@@ -1,0 +1,12 @@
+SELECT employee_id,
+       -- Use a CASE to prioritize primary departments
+       COALESCE(
+            (SELECT department_id 
+             FROM Employee AS e1 
+             WHERE e1.employee_id = e.employee_id AND e1.primary_flag = 'Y' LIMIT 1),
+            (SELECT department_id 
+             FROM Employee AS e2 
+             WHERE e2.employee_id = e.employee_id LIMIT 1)
+       ) AS department_id
+FROM Employee AS e
+GROUP BY employee_id;

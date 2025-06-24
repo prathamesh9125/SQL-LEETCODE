@@ -1,0 +1,5 @@
+SELECT *
+FROM Cinema
+WHERE MOD(id, 2) = 1 -- Select only odd-numbered IDs
+  AND description != 'boring' -- Exclude rows with description 'boring'
+ORDER BY rating DESC; -- Order by rating in descending order
